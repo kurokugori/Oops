@@ -20,7 +20,7 @@
 
     <!-- Banner -->
     <section class="banner">
-        <img src="images/banner.jpg" alt="Promo Banner">
+        <img src="./banner.jpg" alt="Promo Banner">
     </section>
 
     <!-- Product Categories -->
@@ -68,7 +68,7 @@
     <div class="footer-container">
         <!-- Logo Section -->
         <div class="footer-logo">
-            <img src="images/logo.jpg" alt="Oops Logo">
+            <img src="./logo.jpg" alt="Oops Logo">
             <p>Oops - Protect Your Phone</p>
         </div>
 
