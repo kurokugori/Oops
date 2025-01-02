@@ -20,8 +20,10 @@ header {
     flex: 1;
 }
 .logo img {
-    max-width: 150px;
+    max-width: 100px; /* Giảm kích thước từ 150px xuống 100px */
+    height: auto; /* Đảm bảo hình ảnh không bị méo */
 }
+
 
 .search-bar {
     flex: 2;
@@ -59,7 +61,7 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0; /* Optional for spacing */
+    margin: 0px 0; /* Optional for spacing */
 }
 
 /* Product Grid */
