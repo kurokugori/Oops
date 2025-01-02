@@ -3,50 +3,61 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+
 }
 
 /* Header */
-.header {
+header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+.logo {
+    text-align: center;
+    flex: 1;
+}
+.logo img {
+    max-width: 150px;
+}
+
+.search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-actions {
+    flex: 1;
+    text-align: right;
+}
+/* Categories */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f4f4f4;
     padding: 10px;
-    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
 }
-
-.header-search input {
-    padding: 5px;
-}
-
-.header-search button {
-    padding: 5px;
+.categories a {
+    text-decoration: none;
+    color: #333;
 }
 
 /* Banner */
 .banner img {
-    width: 100%;
-    display: block;
+    max-width: 150px;
 }
 
-/* Categories */
-.categories nav ul {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    background-color: #eaeaea;
-    margin: 0;
-}
-
-.categories nav ul li {
-    margin: 0 10px;
-}
-
-.categories nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #333;
-}
 
 /* Product Grid */
 .product-grid {
@@ -87,7 +98,7 @@ body {
 }
 
 .product-item button {
-    background-color: #5cb85c;
+    background-color: #007bff;
     color: #fff;
     border: none;
     padding: 10px;
@@ -96,14 +107,20 @@ body {
 }
 
 .product-item button:hover {
-    background-color: #4cae4c;
+    background-color: #0056b3;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #f4f4f4;
+    
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer div {
+    flex: 1;
 }
