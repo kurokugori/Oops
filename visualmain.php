@@ -13,7 +13,7 @@
     <!-- Header -->
     <header>
         <div class="logo">
-            <img src="images/logo.jpg" alt="Oops Logo">
+            <img src="images/logo.png" alt="Oops Logo">
         </div>
         <div class="search-bar">
             <input type="text" placeholder="Tìm kiếm sản phẩm...">
