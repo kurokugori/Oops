@@ -6,35 +6,33 @@
     <title>Oops Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
+<style>
+
+</style>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="header-location">
-            <p>📍 Hoàng Diệu 2, Thủ Đức, Hồ Chí Minh</p>
+    <header>
+        <div class="address">Hoàng Diệu 2, Thủ Đức, Hồ Chí Minh</div>
+        <div class="logo">
+            <img src="logo-placeholder.png" alt="Oops Logo">
         </div>
-        <div class="header-search">
-            <input type="text" placeholder="Search...">
-            <button>🔍</button>
+        <div class="user-actions">
+            <span>🔔</span>
+            <span>👤</span>
+            <span>🛒</span>
         </div>
-    </header>
-
-    <!-- Banner -->
-    <section class="banner">
-        <img src="images/banner.jpg" alt="Promo Banner">
-    </section>
-
-    <!-- Product Categories -->
-    <section class="categories">
-        <nav>
-            <ul>
-                <li><a href="#">iPhone</a></li>
-                <li><a href="#">Samsung</a></li>
-                <li><a href="#">Oppo</a></li>
-                <li><a href="#">Xiaomi</a></li>
-                <li><a href="#">Khác</a></li>
-            </ul>
+        </header>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+        </div>
+        <nav class="categories">
+            <a href="#">Iphone</a>
+            <a href="#">Samsung</a>
+            <a href="#">Oppo</a>
+            <a href="#">Xiaomi</a>
+            <a href="#">Khác</a>
         </nav>
-    </section>
+    
 
     <!-- Product Grid -->
     <section class="product-grid">
@@ -63,52 +61,31 @@
         </div>
     </section>
 
-   <!-- Footer Section -->
-<footer>
-    <div class="footer-container">
-        <!-- Logo Section -->
-        <div class="footer-logo">
-            <img src="images/logo.jpg" alt="Oops Logo">
-            <p>Oops - Protect Your Phone</p>
+    <!-- Footer -->
+    <footer>
+        <div>
+            <p><strong>Thông tin liên hệ</strong></p>
+            <p>Địa chỉ: Hoàng Diệu 2, Thủ Đức, Hồ Chí Minh</p>
+            <p>SDT: 03587xxxxx</p>
         </div>
-
-        <!-- Footer Links -->
-        <div class="footer-links">
-            <div class="footer-column">
-                <h4>Thông tin liên hệ</h4>
-                <p>68A, Đường Hoàng Diệu 2,<br> Thủ Đức, HCM</p>
-                <p>SĐT: 0900-000-000</p>
-            </div>
-            <div class="footer-column">
-                <h4>Chính sách</h4>
-                <ul>
-                    <li><a href="#">Bảo hành</a></li>
-                    <li><a href="#">Đổi trả</a></li>
-                    <li><a href="#">Hoàn tiền</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Hỗ trợ</h4>
-                <ul>
-                    <li><a href="#">Tra cứu đơn hàng</a></li>
-                    <li><a href="#">Thanh toán</a></li>
-                    <li><a href="#">Liên hệ</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h4>Mạng xã hội</h4>
-                <ul>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">TikTok</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
+        <div>
+            <p><strong>Chính sách</strong></p>
+            <p>Giao hàng</p>
+            <p>Bảo hành</p>
+            <p>Tích điểm</p>
         </div>
-    </div>
-    <div class="footer-bottom">
-        <p>&copy; 2024 Oops - Protect Your Phone. All rights reserved.</p>
-    </div>
-</footer>
-
+        <div>
+            <p><strong>Hỗ trợ</strong></p>
+            <p>Tra cứu đơn hàng</p>
+            <p>Thanh toán</p>
+            <p>Liên hệ</p>
+        </div>
+        <div>
+            <p><strong>Mạng xã hội</strong></p>
+            <p>Facebook</p>
+            <p>Tiktok</p>
+            <p>Shopee</p>
+        </div>
+    </footer>
 </body>
 </html>
