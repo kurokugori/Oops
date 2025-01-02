@@ -16,7 +16,7 @@ header {
     border-bottom: 1px solid #ddd;
 }
 .logo {
-    text-align: center;
+    text-align: left;
     flex: 1;
 }
 .logo img {
@@ -54,10 +54,13 @@ header {
 }
 
 /* Banner */
-.banner img {
-    max-width: 150px;
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0; /* Optional for spacing */
 }
-
 
 /* Product Grid */
 .product-grid {
