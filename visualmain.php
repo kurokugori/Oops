@@ -12,9 +12,12 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="address">Hoàng Diệu 2, Thủ Đức, Hồ Chí Minh</div>
         <div class="logo">
-            <img src="logo-placeholder.png" alt="Oops Logo">
+            <img src="images/logo.jpg" alt="Oops Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+            <span>🔍</span>
         </div>
         <div class="user-actions">
             <span>🔔</span>
@@ -22,8 +25,8 @@
             <span>🛒</span>
         </div>
         </header>
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm...">
+        <div class="banner">
+            <img src="images/banner.jpg" alt="banner">
         </div>
         <nav class="categories">
             <a href="#">Iphone</a>
