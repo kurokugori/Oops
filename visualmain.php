@@ -148,7 +148,7 @@
     <nav class="categories">
         <?php
         // Kết nối cơ sở dữ liệu
-        $connection = new mysqli("localhost", "root", "", "oops");
+        $connection = new mysqli("localhost", "root", "", "oopsdb");
 
         if ($connection->connect_error) {
             die("Kết nối thất bại: " . $connection->connect_error);
@@ -204,7 +204,7 @@
 
             // Đếm tổng số sản phẩm
             $sql_total = "
-                SELECT COUNT(*) AS total 
+                SELECT COUNT(DISTINCT p.id) AS total 
                 FROM products p
                 INNER JOIN categories c ON p.id = c.product_id
             ";
@@ -217,7 +217,7 @@
 
             // Lấy sản phẩm cho trang hiện tại
             $sql_products = "
-                SELECT 
+                SELECT DISTINCT
                     p.id, 
                     p.product_name, 
                     p.unit_price, 
@@ -229,7 +229,8 @@
             if ($category_filter) {
                 $sql_products .= " WHERE c.phone_model = '" . $connection->real_escape_string($category_filter) . "'";
             }
-            $sql_products .= " LIMIT $limit OFFSET $offset";
+            $sql_products .= " GROUP BY p.id LIMIT $limit OFFSET $offset";
+            
 
             $result_products = $connection->query($sql_products);
 
@@ -238,7 +239,7 @@
                     echo '
                     <div class="product-item">
                         <a href="detail.php?id=' . htmlspecialchars($product['id']) . '">
-                            <img src="' . htmlspecialchars($product['image_url']) . '" alt="' . htmlspecialchars($product['product_name']) . '">
+                            <img src="anh/'. htmlspecialchars($product['image_url']) . '" alt="' . htmlspecialchars($product['product_name']) . '">
                             <h3>' . htmlspecialchars($product['product_name']) . '</h3>
                         </a>
                         <p>Price: ' . number_format($product['unit_price'], 0, ',', '.') . 'đ</p>
