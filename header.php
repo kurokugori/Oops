@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
         <div class="logo">
             <img src="images/logo.png" alt="Oops Logo">
@@ -17,14 +18,9 @@
         </div>
         <div class="user-actions">
             <span>🔔</span>
-            <span>👤</span>
+            <span><a href="login.php" target="_blank">👤</a></span>
             <span>🛒</span>
         </div>
     </header>
-    <nav class="categories">
-        <a href="#">Iphone</a>
-        <a href="#">Samsung</a>
-        <a href="#">Oppo</a>
-        <a href="#">Xiaomi</a>
-        <a href="#">Khác</a>
-    </nav>
+</body>
+</html>
