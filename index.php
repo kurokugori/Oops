@@ -5,8 +5,24 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
-// Lấy danh sách sản phẩm
-$sql = "SELECT * FROM products";
+// Số sản phẩm trên mỗi trang
+$items_per_page = 7;
+
+// Xác định trang hiện tại
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($current_page - 1) * $items_per_page;
+
+// Lấy tổng số sản phẩm
+$sql_count = "SELECT COUNT(*) as total FROM products";
+$result_count = $conn->query($sql_count);
+$row_count = $result_count->fetch_assoc();
+$total_items = $row_count['total'];
+
+// Tính tổng số trang
+$total_pages = ceil($total_items / $items_per_page);
+
+// Lấy danh sách sản phẩm với phân trang
+$sql = "SELECT * FROM products LIMIT $items_per_page OFFSET $offset";
 $result = $conn->query($sql);
 
 if (!$result) {
@@ -57,6 +73,33 @@ if (!$result) {
                 <?php endwhile; ?>
             </tbody>
         </table>
+
+        <!-- Phân trang -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php if ($current_page > 1): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?= $current_page - 1 ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                    <li class="page-item <?= $i == $current_page ? 'active' : '' ?>">
+                        <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                    </li>
+                <?php endfor; ?>
+
+                <?php if ($current_page < $total_pages): ?>
+                    <li class="page-item">
+                        <a class="page-link" href="?page=<?= $current_page + 1 ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
         <?php else: ?>
         <div class="alert alert-warning">Không có sản phẩm nào.</div>
         <?php endif; ?>
