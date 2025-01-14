@@ -134,7 +134,7 @@
     <nav class="categories">
         <?php
         // Kết nối cơ sở dữ liệu
-        $connection = new mysqli("localhost", "root", "", "oops");
+        $connection = new mysqli("localhost", "root", "", "oopsdb");
 
         if ($connection->connect_error) {
             die("Kết nối thất bại: " . $connection->connect_error);
