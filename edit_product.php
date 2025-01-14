@@ -44,10 +44,27 @@ $row = $result->fetch_assoc();
                     <label for="product_name" class="form-label">Tên sản phẩm:</label>
                     <input type="text" id="product_name" name="product_name" class="form-control" value="<?= $row['product_name'] ?>" required>
                 </div>
+
+
+
                 <div class="mb-3">
-                    <label for="phone_brand_id" class="form-label">ID thương hiệu:</label>
-                    <input type="text" id="phone_brand_id" name="phone_brand_id" class="form-control" value="<?= $row['phone_brand_id'] ?>" required>
-                </div>
+    <label for="phone_brand_id">Thương hiệu:</label>
+    <select name="phone_brand_id" id="phone_brand_id" class="form-control" required>
+        <?php
+        $sql2 = "SELECT * FROM phone_brands";
+        $result = $conn->query($sql2);
+        $list_phone_brands = [];
+        if ($result) {
+            $list_phone_brands = $result->fetch_all(MYSQLI_ASSOC);
+        }
+        foreach ($list_phone_brands as $x) {
+            $selected = ($x['id'] == $row['phone_brand_id']) ? 'selected' : '';
+            echo "<option value=\"" . $x['id'] . "\" $selected>" . $x['brand_name'] . "</option>";
+        }
+        ?>
+    </select>
+</div>
+                
                 <div class="mb-3">
                     <label for="unit_price" class="form-label">Giá:</label>
                     <input type="number" id="unit_price" name="unit_price" class="form-control" value="<?= $row['unit_price'] ?>" required>
