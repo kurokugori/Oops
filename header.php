@@ -34,7 +34,7 @@
     <header>
         <div class="logo">
             <!-- Thêm liên kết để quay về trang chủ -->
-            <a href="index.php">
+            <a href="visualmain.php">
                 <img src="images/logo.png" alt="Oops Logo">
             </a>
         </div>

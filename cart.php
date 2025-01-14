@@ -220,13 +220,7 @@
 
 <body onload="updateTotal()">
 
-    <!-- DANH MỤC SẢN PHẨM -->
-    <div class="categories">
-        <a href="#"><b>Apple</b></a>
-        <a href="#"><b>Samsung</b></a>
-        <a href="#"><b>Oppo</b></a>
-        <a href="#"><b>Xiaomi</b></a>
-    </div>
+   
 
     <!-- GIỎ HÀNG -->
     <div class="product-grid">

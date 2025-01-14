@@ -3,7 +3,7 @@
     $servername = "localhost"; //Địa chỉ máy chủ
     $username = "root"; //Tên đăng nhập
     $password = ""; //Mật khẩu
-    $dbname = "oops"; //Tên cơ sở dữ liệu cần kết nối
+    $dbname = "oopsdb"; //Tên cơ sở dữ liệu cần kết nối
     // Tạo kết nối
     $conn = new mysqli($servername, $username, $password, $dbname); // $conn: biến chứa thông tin kết nối được khởi tạo tại file 
     // Kiểm tra kết nối
