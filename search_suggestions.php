@@ -2,7 +2,7 @@
 session_start();
 
 // Kết nối cơ sở dữ liệu
-$connection = new mysqli("localhost", "root", "", "oops");
+$connection = new mysqli("localhost", "root", "", "oopsdb");
 if ($connection->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $connection->connect_error);
 }

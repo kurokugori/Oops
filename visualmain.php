@@ -232,13 +232,13 @@
                         <p>Price: ' . number_format($product['unit_price'], 0, ',', '.') . 'đ</p>
                         <form action="checkout.php" method="POST">
                             <input type="hidden" name="product_id" value="' . htmlspecialchars($product['id']) . '">
-                            <button type="submit">Buy Now</button>
+                            <button type="submit">Mua ngay</button>
                         </form>
 
                         <!-- Form for Add to Cart button -->
                         <form action="add_to_cart.php" method="POST">
                             <input type="hidden" name="product_id" value="' . htmlspecialchars($product['id']) . '">
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit">Thêm giỏ hàng</button>
                         </form>
                     </div>
                     ';
