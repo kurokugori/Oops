@@ -23,6 +23,7 @@ session_start();
                 'quantity' => 1
             ];
         }
+        
 
         // Quay về trang giỏ hàng
         header("Location: cart.php");
