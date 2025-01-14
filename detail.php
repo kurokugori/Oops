@@ -77,6 +77,7 @@ if (isset($_GET['id'])) {
                     padding: 5px;
                     text-align: center;
                 }
+                /* Style cho các nút */
                 .button-group {
                     display: flex;
                     flex-direction: column;
@@ -118,24 +119,9 @@ if (isset($_GET['id'])) {
                     font-weight: bold;
                     margin: 20px 0;
                 }
-                .success-message {
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background-color: #4CAF50;
-                    color: white;
-                    padding: 15px;
-                    border-radius: 4px;
-                    display: none;
-                    z-index: 1000;
-                }
             </style>
         </head>
         <body>
-            <div class="success-message" id="successMessage">
-                Đã thêm sản phẩm vào giỏ hàng!
-            </div>
-
             <div class="product-container">
                 <div class="product-images">
                     <div class="main-image">
@@ -192,14 +178,6 @@ if (isset($_GET['id'])) {
             </div>
 
             <script>
-            function showSuccessMessage() {
-                const message = document.getElementById('successMessage');
-                message.style.display = 'block';
-                setTimeout(() => {
-                    message.style.display = 'none';
-                }, 3000);
-            }
-
             function updateQuantity(change) {
                 const input = document.getElementById('quantity');
                 const newValue = parseInt(input.value) + change;
@@ -207,14 +185,6 @@ if (isset($_GET['id'])) {
                 
                 if (newValue >= 1 && newValue <= max) {
                     input.value = newValue;
-                }
-            }
-
-            function updateCartCount(count) {
-                // Cập nhật số lượng trong giỏ hàng ở header
-                const cartCountElement = document.querySelector('.user-actions span');
-                if (cartCountElement) {
-                    cartCountElement.textContent = count;
                 }
             }
 
@@ -233,12 +203,7 @@ if (isset($_GET['id'])) {
                 xhr.onreadystatechange = function() {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
-                            // Hiển thị thông báo thành công
-                            showSuccessMessage();
-                            
-                            // Cập nhật số lượng giỏ hàng
-                            const response = JSON.parse(xhr.responseText);
-                            updateCartCount(response.cartCount);
+                            alert('Đã thêm sản phẩm vào giỏ hàng!');
                         } else {
                             alert('Có lỗi xảy ra khi thêm vào giỏ hàng');
                         }
@@ -257,13 +222,13 @@ if (isset($_GET['id'])) {
                     return;
                 }
 
+                // Chuyển hướng đến trang thanh toán với thông tin sản phẩm
                 window.location.href = 'checkout.php?' + 
                     'product_id=<?php echo $product_id; ?>' +
                     '&quantity=' + quantity +
                     '&phone_model=' + encodeURIComponent(model);
             }
             </script>
-
             <?php include "footer.php"; ?>
         </body>
         </html>
