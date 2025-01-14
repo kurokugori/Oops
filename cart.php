@@ -1,7 +1,8 @@
 <?php
     session_start();
+    require_once "config_btn.php";
+    include "header.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -201,6 +202,93 @@
         }
     </style>
 
+    <?php
+        // Lấy thông tin sản phẩm từ cơ sở dữ liệu
+        $sql = "SELECT id, product_name, unit_price, image_url FROM products";
+        $result = $conn->query($sql);
+        $products = [];
+
+        if ($result->num_rows > 0) {
+            // Lưu các sản phẩm vào mảng
+            while ($row = $result->fetch_assoc()) {
+                $products[] = $row;
+            }
+        } else {
+            echo "0 results";
+        }
+    ?>
+
+<body onload="updateTotal()">
+
+    <!-- DANH MỤC SẢN PHẨM -->
+    <div class="categories">
+        <a href="#"><b>Apple</b></a>
+        <a href="#"><b>Samsung</b></a>
+        <a href="#"><b>Oppo</b></a>
+        <a href="#"><b>Xiaomi</b></a>
+    </div>
+
+    <!-- GIỎ HÀNG -->
+    <div class="product-grid">
+        <h2>Giỏ Hàng</h2>
+        <table>
+            <tr>
+                <th>Chọn</th>
+                <th>Sản phẩm</th>
+                <th>Đơn giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+                <th>Xóa</th>
+            </tr>
+
+            <?php
+            if (!empty($_SESSION['cart'])) {
+                foreach ($_SESSION['cart'] as $id => $product) {
+                    // Truy vấn để lấy tên và đơn giá từ cơ sở dữ liệu
+                    $sql = "SELECT product_name, unit_price, image_url FROM products WHERE id = '$id'";
+                    $result = $conn->query($sql);
+                    $productData = $result->fetch_assoc();
+
+                    $name = $productData['product_name'];
+                    $price = $productData['unit_price'];
+                    $image = $productData['image_url'];
+                    $quantity = $product['quantity']; // Số lượng trong giỏ hàng
+                    $subtotal = $price * $quantity;
+                    
+                    echo "<tr class='cart-item'>
+                        <td><input type='checkbox' class='select-item' onclick='updateTotal()'></td>
+                        <td><img src='{$image}' width='50'> {$name}</td>
+                        <td class='item-price'>{$price}đ</td>
+                        <td>
+                            <button onclick='changeQuantity(this, -1)'>-</button> 
+                            <input type='text' class='quantity-input' value='{$quantity}' size='2' onchange='updateTotal()'> 
+                            <button onclick='changeQuantity(this, 1)'>+</button>
+                        </td>
+                        <td class='item-total'>{$subtotal}đ</td>
+                        <td>
+                            <a href='remove_cart.php?id={$id}' onclick=\"return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');\">X</a>
+                        </td>
+                    </tr>";
+                }
+                echo "<tr>
+                        <td colspan='4'><b>Tổng tiền:</b></td>
+                        <td id='total-price'><b>0đ</b></td>
+                        <td></td>
+                    </tr>";
+            } else {
+                echo "<tr><td colspan='6'>Giỏ hàng trống</td></tr>";
+            }
+            ?>
+
+        </table>
+
+        <a href="checkout.php">
+            <button style="background: green; color: white; padding: 10px; margin-top: 10px; border: none; cursor: pointer;">
+                Mua hàng
+            </button>
+        </a>
+    </div>
+
     <script>
         function updateTotal() {
             let total = 0;
@@ -218,116 +306,23 @@
 
             document.getElementById("total-price").innerText = total.toLocaleString() + "đ";
         }
+
+        function changeQuantity(button, amount) {
+            let input = button.parentElement.querySelector(".quantity-input");
+            let newQuantity = parseInt(input.value) + amount;
+            if (newQuantity > 0) {
+                input.value = newQuantity;
+                updateTotal();
+            }
+        }
+
+            function removecart(productId) {
+            // Gửi yêu cầu xóa sản phẩm khỏi giỏ hàng
+            window.location.href = 'remove_cart.php?id=' + productId;
+        }
     </script>
 
-    <body onload="updateTotal()">
-
-        <!-- HEADER -->
-        <header>
-            <div class="logo">
-                <img src="D:/BTN_ltweb_oops/logo.jpg" alt="Oops Logo">
-            </div>
-            <div class="search-bar">
-                <input type="text" placeholder="Tìm kiếm sản phẩm...">
-            </div>
-            <div class="user-actions">
-                <span>🔔</span>
-                <span>👤</span>
-                <span>🛒</span>
-            </div>
-        </header>
-
-        <!-- DANH MỤC SẢN PHẨM -->
-        <div class="categories">
-            <a href="#">Apple</a>
-            <a href="#">Samsung</a>
-            <a href="#">Oppo</a>
-            <a href="#">Xiaomi</a>
-        </div>
-
-        <!-- GIỎ HÀNG -->
-        <div class="product-grid">
-            <h2>Giỏ Hàng</h2>
-            <table>
-                <tr>
-                    <th>Chọn</th>
-                    <th>Sản phẩm</th>
-                    <th>Đơn giá</th>
-                    <th>Số lượng</th>
-                    <th>Thành tiền</th>
-                    <th>Xóa</th>
-                </tr>
-
-                <?php
-                if (!empty($_SESSION['cart'])) {
-                    foreach ($_SESSION['cart'] as $id => $product) {
-                        echo "<tr class='cart-item'>
-                            <td><input type='checkbox' class='select-item' onclick='updateTotal()'></td>
-                            <td><img src='D:/BTN_ltweb_oops/{$product['image']}' width='50'> {$product['name']}</td>
-                            <td class='item-price'>{$product['price']}đ</td>
-                            <td>
-                                <button onclick='changeQuantity(this, -1)'>-</button> 
-                                <input type='text' class='quantity-input' value='{$product['quantity']}' size='2' onchange='updateTotal()'> 
-                                <button onclick='changeQuantity(this, 1)'>+</button>
-                            </td>
-                            <td class='item-total'>0đ</td>
-                            <td><button>X</button></td>
-                        </tr>";
-                    }
-                    echo "<tr>
-                            <td colspan='4'><b>Tổng tiền:</b></td>
-                            <td id='total-price'><b>0đ</b></td>
-                            <td></td>
-                        </tr>";
-                } else {
-                    echo "<tr><td colspan='6'>Giỏ hàng trống</td></tr>";
-                }
-                ?>
-            </table>
-
-            <a href="checkout.php">
-                <button style="background: green; color: white; padding: 10px; margin-top: 10px; border: none; cursor: pointer;">
-                Mua hàng
-                </button>
-            </a>
-        </div>
-
-        <script>
-            function changeQuantity(button, amount) {
-                let input = button.parentElement.querySelector(".quantity-input");
-                let newQuantity = parseInt(input.value) + amount;
-                if (newQuantity > 0) {
-                    input.value = newQuantity;
-                    updateTotal();
-                }
-            }
-        </script>
-
         <!-- FOOTER -->
-        <footer>
-            <div>
-                <h3>Thông tin liên hệ</h3>
-                <p>Địa chỉ: Hoàng Diệu 2, Thủ Đức, Hồ Chí Minh</p>
-                <p>SDT: 03587xxxxx</p>
-            </div>
-            <div>
-                <h3>Chính sách</h3>
-                <p>Giao hàng</p>
-                <p>Bảo hành</p>
-                <p>Tích điểm</p>
-            </div>
-            <div>
-                <h3>Hỗ trợ</h3>
-                <p>Tra cứu đơn hàng</p>
-                <p>Thanh toán</p>
-                <p>Liên hệ</p>
-            </div>
-            <div>
-                <h3>Mạng xã hội</h3>
-                <p>Facebook</p>
-                <p>Tiktok</p>
-                <p>Shopee</p>
-            </div>
-        </footer>
+        <?php include "footer.php"; ?>
     </body>
 </html>
