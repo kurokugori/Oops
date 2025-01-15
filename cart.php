@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    require_once "config_btn.php";
-    include "header.php";
+session_start();
+require_once "config_btn.php";
+include "header.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,134 +12,66 @@
     <style>
         /* Global Styles */
         body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         /* Header */
         header {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 10px 20px;
-                background-color: #f4f4f4;
-                border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f4f4f4;
+            border-bottom: 1px solid #ddd;
         }
         .logo {
-                text-align: left;
-                flex: 1;
+            text-align: left;
+            flex: 1;
         }
         .logo img {
-                max-width: 100px; /* Giảm kích thước từ 150px xuống 100px */
-                height: auto; /* Đảm bảo hình ảnh không bị méo */
+            max-width: 100px;
+            height: auto;
         }
 
         .search-bar {
-                flex: 2;
-                display: flex;
-                justify-content: center;
+            flex: 2;
+            display: flex;
+            justify-content: center;
         }
 
         .search-bar input {
-                width: 40%;
-                padding: 5px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
+            width: 40%;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
         }
 
         .user-actions {
-                flex: 1;
-                text-align: right;
-        }
-        /* Categories */
-        .categories {
-                display: flex;
-                justify-content: space-around;
-                background-color: #f4f4f4;
-                padding: 10px;
-                border-bottom: 1px solid #ddd;
-        }
-        .categories a {
-                text-decoration: none;
-                color: #333;
+            flex: 1;
+            text-align: right;
         }
 
-        /* Banner */
-        .banner {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 0px 0; /* Optional for spacing */
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .categories a {
+            text-decoration: none;
+            color: #333;
         }
 
         /* Product Grid */
         .product-grid {
-                padding: 20px;
-                text-align: center;
+            padding: 20px;
+            text-align: center;
         }
 
-        .product-grid .products {
-                display: flex;
-                justify-content: space-around;
-                flex-wrap: wrap;
-        }
-
-        .product-item {
-                width: 200px;
-                margin: 10px;
-                border: 1px solid #ddd;
-                border-radius: 8px;
-                padding: 10px;
-                background-color: #fff;
-                text-align: center;
-        }
-
-        .product-item img {
-                width: 100%;
-                height: 150px;
-                object-fit: cover;
-                margin-bottom: 10px;
-        }
-
-        .product-item h3 {
-                font-size: 16px;
-                margin: 5px 0;
-        }
-
-        .product-item p {
-                color: #555;
-        }
-
-        .product-item button {
-                background-color: #007bff;
-                color: #fff;
-                border: none;
-                padding: 10px;
-                cursor: pointer;
-                border-radius: 5px;
-        }
-
-        .product-item button:hover {
-                background-color: #0056b3;
-        }
-
-        /* Footer */
-        footer {
-                background-color: #f4f4f4;
-                text-align: center;
-                padding: 20px;
-                border-top: 1px solid #ddd;
-                display: flex;
-                justify-content: space-around;
-        }
-
-        footer div {
-                flex: 1;
-        }
-        /*CSS table giỏ hàng*/
         .cart-table {
             width: 100%;
             border-collapse: collapse;
@@ -187,39 +119,9 @@
         .buy-button:hover {
             background-color: #009900;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-        input[type="text"] {
-            width: 40px;
-            text-align: center;
-        }
     </style>
-
-    <?php
-        // Lấy thông tin sản phẩm từ cơ sở dữ liệu
-        $sql = "SELECT id, product_name, unit_price, image_url FROM products";
-        $result = $conn->query($sql);
-        $products = [];
-
-        if ($result->num_rows > 0) {
-            // Lưu các sản phẩm vào mảng
-            while ($row = $result->fetch_assoc()) {
-                $products[] = $row;
-            }
-        } else {
-            echo "0 results";
-        }
-    ?>
-
+</head>
 <body onload="updateTotal()">
-
     <!-- DANH MỤC SẢN PHẨM -->
     <div class="categories">
         <a href="#"><b>Apple</b></a>
@@ -231,7 +133,7 @@
     <!-- GIỎ HÀNG -->
     <div class="product-grid">
         <h2>Giỏ Hàng</h2>
-        <table>
+        <table class="cart-table">
             <tr>
                 <th>Chọn</th>
                 <th>Sản phẩm</th>
@@ -254,8 +156,8 @@
                     $image = $productData['image_url'];
                     $quantity = $product['quantity']; // Số lượng trong giỏ hàng
                     $subtotal = $price * $quantity;
-                    
-                    echo "<tr class='cart-item'>
+                    ?>
+                                     echo "<tr class='cart-item'>
                         <td><input type='checkbox' class='select-item' onclick='updateTotal()'></td>
                         <td><img src='anh/" . htmlspecialchars($image) . "' alt='' width='50'> " . htmlspecialchars($name) . "</td>
                         <td class='item-price'>{$price}đ</td>
@@ -269,24 +171,28 @@
                             <a href='remove_cart.php?id={$id}' onclick=\"return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');\">X</a>
                         </td>
                     </tr>";
+                    <?php
                 }
+                ?>
                 echo "<tr>
                         <td colspan='4'><b>Tổng tiền:</b></td>
                         <td id='total-price'><b>0đ</b></td>
                         <td></td>
                     </tr>";
+                    <?php
             } else {
                 echo "<tr><td colspan='6'>Giỏ hàng trống</td></tr>";
             }
             ?>
-
         </table>
 
-        <a href="checkout.php">
-            <button style="background: green; color: white; padding: 10px; margin-top: 10px; border: none; cursor: pointer;">
+        <!-- Form để gửi dữ liệu sang payment.php -->
+        <form action="payment.php" method="post" id="checkoutForm">
+            <input type="hidden" name="selected_items" id="selectedItems">
+            <button type="submit" style="background: green; color: white; padding: 10px; margin-top: 10px; border: none; cursor: pointer;">
                 Mua hàng
             </button>
-        </a>
+        </form>
     </div>
 
     <script>
@@ -316,13 +222,23 @@
             }
         }
 
-            function removecart(productId) {
-            // Gửi yêu cầu xóa sản phẩm khỏi giỏ hàng
-            window.location.href = 'remove_cart.php?id=' + productId;
-        }
+        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            let selectedItems = [];
+            document.querySelectorAll(".cart-item").forEach(row => {
+                let checkbox = row.querySelector(".select-item");
+                if (checkbox.checked) {
+                    let productId = row.querySelector("a[href*='remove_cart.php']").getAttribute('href').split('=')[1];
+                    let quantity = parseInt(row.querySelector(".quantity-input").value);
+                    let price = parseFloat(row.querySelector(".item-price").innerText.replace('đ', ''));
+                    selectedItems.push({ id: productId, quantity: quantity, price: price });
+                }
+            });
+
+            document.getElementById('selectedItems').value = JSON.stringify(selectedItems);
+        });
     </script>
 
-        <!-- FOOTER -->
-        <?php include "footer.php"; ?>
-    </body>
+    <!-- FOOTER -->
+    <?php include "footer.php"; ?>
+</body>
 </html>
