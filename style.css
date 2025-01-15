@@ -1,0 +1,131 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+.logo {
+    text-align: left;
+    flex: 1;
+}
+.logo img {
+    max-width: 100px; /* Giảm kích thước từ 150px xuống 100px */
+    height: auto; /* Đảm bảo hình ảnh không bị méo */
+}
+
+
+.search-bar {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar input {
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.user-actions {
+    flex: 1;
+    text-align: right;
+}
+/* Categories */
+.categories {
+    display: flex;
+    justify-content: space-around;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.categories a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Banner */
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0; /* Optional for spacing */
+}
+
+/* Product Grid */
+.product-grid {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-grid .products {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.product-item {
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.product-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.product-item h3 {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.product-item p {
+    color: #555;
+}
+
+.product-item button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.product-item button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer */
+footer {
+    background-color: #f4f4f4;
+    
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+}
+
+footer div {
+    flex: 1;
+}
