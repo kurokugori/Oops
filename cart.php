@@ -3,6 +3,7 @@
     require_once "config_btn.php";
     include "header.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -319,6 +320,28 @@
             function removecart(productId) {
             // Gửi yêu cầu xóa sản phẩm khỏi giỏ hàng
             window.location.href = 'remove_cart.php?id=' + productId;
+        }
+
+        function submitSelectedItems() {
+            let selectedItems = [];
+            document.querySelectorAll(".cart-item").forEach(row => {
+                let checkbox = row.querySelector(".select-item");
+                if (checkbox.checked) {
+                let productId = row.querySelector("a").href.split('id=')[1];
+                let quantity = row.querySelector(".quantity-input").value;
+                let price = parseFloat(row.querySelector(".item-price").innerText.replace('đ', ''));
+                // Lấy tên sản phẩm từ cell thứ 2, loại bỏ phần img
+                let productCell = row.querySelector("td:nth-child(2)");
+                let productName = productCell.innerText.trim();
+                selectedItems.push({
+                    id: productId,
+                    quantity: quantity,
+                    price: price,
+                    name: productName
+                });
+                }
+            });
+            document.getElementById("selected-items").value = JSON.stringify(selectedItems);
         }
     </script>
 
