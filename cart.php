@@ -3,6 +3,7 @@ session_start();
 require_once "config_btn.php";
 include "header.php";
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -222,11 +223,21 @@ include "header.php";
             }
         }
 
+<<<<<<< HEAD
         document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+=======
+            function removecart(productId) {
+            // Gửi yêu cầu xóa sản phẩm khỏi giỏ hàng
+            window.location.href = 'remove_cart.php?id=' + productId;
+        }
+
+        function submitSelectedItems() {
+>>>>>>> b9092a29dc7c32f38ab0b4cdadfac2ea5c291681
             let selectedItems = [];
             document.querySelectorAll(".cart-item").forEach(row => {
                 let checkbox = row.querySelector(".select-item");
                 if (checkbox.checked) {
+<<<<<<< HEAD
                     let productId = row.querySelector("a[href*='remove_cart.php']").getAttribute('href').split('=')[1];
                     let quantity = parseInt(row.querySelector(".quantity-input").value);
                     let price = parseFloat(row.querySelector(".item-price").innerText.replace('đ', ''));
@@ -236,6 +247,24 @@ include "header.php";
 
             document.getElementById('selectedItems').value = JSON.stringify(selectedItems);
         });
+=======
+                let productId = row.querySelector("a").href.split('id=')[1];
+                let quantity = row.querySelector(".quantity-input").value;
+                let price = parseFloat(row.querySelector(".item-price").innerText.replace('đ', ''));
+                // Lấy tên sản phẩm từ cell thứ 2, loại bỏ phần img
+                let productCell = row.querySelector("td:nth-child(2)");
+                let productName = productCell.innerText.trim();
+                selectedItems.push({
+                    id: productId,
+                    quantity: quantity,
+                    price: price,
+                    name: productName
+                });
+                }
+            });
+            document.getElementById("selected-items").value = JSON.stringify(selectedItems);
+        }
+>>>>>>> b9092a29dc7c32f38ab0b4cdadfac2ea5c291681
     </script>
 
     <!-- FOOTER -->
