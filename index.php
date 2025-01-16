@@ -47,6 +47,7 @@ if (!$result) {
             <a href="add_product.php" class="btn btn-success">Thêm sản phẩm mới</a>
             <a href="manage_stock.php" class="btn btn-primary">Quản lý hàng tồn kho</a>
             <a href="manage_orders.php" class="btn btn-info">Quản lý đơn hàng</a>
+            <a href="manage_revenue.php" class="btn btn-warning">Quản lý doanh thu</a>
         </div>
 
         <?php if ($result->num_rows > 0): ?>

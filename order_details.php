@@ -37,6 +37,9 @@ if (!$result_order || !$result_details) {
 </head>
 <body>
     <div class="container mt-5">
+        <div class="mb-3">
+            <a href="index.php" class="btn btn-secondary">Trở về trang chủ</a>
+        </div>
         <h1 class="text-center mb-4">Chi tiết đơn hàng</h1>
 
         <div class="card p-4">

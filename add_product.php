@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="mb-3">
             <label for="phone_brand_id">Thương hiệu:</label>
             <select name="phone_brand_id" id="phone_brand_id" class="form-control" required>
-            <?php
+    <?php
         
         $sql2 = "SELECT * FROM phone_brands";
         $result = $conn->query($sql2);
@@ -80,13 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
         }
     ?>
-
-                
-
-
-               
-                
-    
   </select>
             </div>
             <div class="mb-3">

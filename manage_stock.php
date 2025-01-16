@@ -39,6 +39,9 @@ if (!$result) {
 </head>
 <body>
     <div class="container mt-5">
+        <div class="mb-3">
+            <a href="index.php" class="btn btn-secondary">Trở về trang chủ</a>
+        </div>
         <h1 class="text-center mb-4">Quản lý hàng tồn kho</h1>
 
         <?php if ($result->num_rows > 0): ?>

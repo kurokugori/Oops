@@ -4,6 +4,7 @@ if ($conn->connect_error) {
     die("Kết nối thất bại: " . $conn->connect_error);
 }
 
+
 $id = $_GET['id'];
 $sql = "DELETE FROM products WHERE id='$id'";
 if ($conn->query($sql) === TRUE) {
